@@ -326,6 +326,10 @@ def clean_html_content(soup: BeautifulSoup) -> BeautifulSoup:
     ]
 
     for element in soup.find_all(True):  # Find all tags
+        # Skip elements without attributes (like NavigableString, Comment, etc.)
+        if not hasattr(element, 'attrs') or element.attrs is None:
+            continue
+
         class_str = ' '.join(element.get('class', [])).lower()
         id_str = element.get('id', '').lower()
 
