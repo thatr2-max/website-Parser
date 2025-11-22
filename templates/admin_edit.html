@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit {{ site_name }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Top toolbar */
+        .toolbar {
+            background: #0A2463;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .toolbar-left h1 {
+            font-size: 1.2rem;
+        }
+
+        .toolbar-left a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .toolbar-left a:hover {
+            opacity: 1;
+        }
+
+        .mode-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .mode-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .mode-btn.active {
+            background: white;
+            color: #0A2463;
+        }
+
+        .toolbar-right {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .save-btn {
+            padding: 0.5rem 1.5rem;
+            background: #7d4745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .save-btn:hover {
+            background: #5a3332;
+        }
+
+        .save-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        /* Main content area */
+        .content-wrapper {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #f5f5f5;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+        }
+
+        .page-list {
+            padding: 1rem;
+        }
+
+        .page-list h3 {
+            color: #0A2463;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .page-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .page-item:hover {
+            border-left-color: #3E92CC;
+            background: #fafafa;
+        }
+
+        .page-item.active {
+            border-left-color: #0A2463;
+            background: #e8f4fd;
+            font-weight: 600;
+        }
+
+        /* Preview/Edit area */
+        .preview-area {
+            flex: 1;
+            background: white;
+            position: relative;
+        }
+
+        #preview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #edit-area {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #edit-area.active {
+            display: block;
+        }
+
+        [contenteditable] {
+            outline: 2px dashed transparent;
+            transition: outline 0.2s ease;
+            padding: 0.25rem;
+            border-radius: 4px;
+        }
+
+        [contenteditable]:hover {
+            outline-color: #3E92CC;
+            background: #f0f8ff;
+        }
+
+        [contenteditable]:focus {
+            outline-color: #0A2463;
+            background: #e8f4fd;
+        }
+
+        /* Overview mode */
+        #overview-area {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #overview-area.active {
+            display: block;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .page-preview {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .page-preview:hover {
+            border-color: #3E92CC;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .page-preview-header {
+            padding: 1rem;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-preview-header h4 {
+            color: #0A2463;
+            margin: 0;
+        }
+
+        .page-preview-content {
+            padding: 1rem;
+            max-height: 300px;
+            overflow: hidden;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .status-indicator {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-good {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-empty {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #28a745;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateY(200%);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <a href="/">← Back</a>
+            <h1>{{ site_name }}</h1>
+            <div class="mode-switcher">
+                <button class="mode-btn active" id="browse-mode-btn" onclick="setMode('browse')">Browse</button>
+                <button class="mode-btn" id="edit-mode-btn" onclick="setMode('edit')">Edit</button>
+                <button class="mode-btn" id="overview-mode-btn" onclick="setMode('overview')">Overview</button>
+            </div>
+        </div>
+        <div class="toolbar-right">
+            <button class="save-btn" id="save-btn" onclick="savePage()" disabled>💾 Save Changes</button>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <div class="page-list">
+                <h3>Pages</h3>
+                {% for page in pages %}
+                <div class="page-item" data-page="{{ page }}" onclick="loadPage('{{ page }}')">
+                    {{ page|title }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="preview-area">
+            <!-- Browse mode: iframe preview -->
+            <iframe id="preview-frame"></iframe>
+
+            <!-- Edit mode: contenteditable -->
+            <div id="edit-area"></div>
+
+            <!-- Overview mode: all pages at once -->
+            <div id="overview-area">
+                <h2 style="margin-bottom: 2rem; color: #0A2463;">All Pages Overview</h2>
+                <div class="overview-grid" id="overview-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const siteName = '{{ site_name }}';
+        let currentPage = '{{ pages[0] if pages else "home" }}';
+        let currentMode = 'browse';
+        let hasUnsavedChanges = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage(currentPage);
+            loadOverview();
+        });
+
+        // Mode switching
+        function setMode(mode) {
+            currentMode = mode;
+
+            // Update buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${mode}-mode-btn`).classList.add('active');
+
+            // Show/hide areas
+            const frame = document.getElementById('preview-frame');
+            const editArea = document.getElementById('edit-area');
+            const overviewArea = document.getElementById('overview-area');
+
+            frame.style.display = mode === 'browse' ? 'block' : 'none';
+            editArea.classList.toggle('active', mode === 'edit');
+            overviewArea.classList.toggle('active', mode === 'overview');
+
+            if (mode === 'overview') {
+                loadOverview();
+            }
+        }
+
+        // Load a specific page
+        function loadPage(pageName) {
+            currentPage = pageName;
+
+            // Update sidebar
+            document.querySelectorAll('.page-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.page === pageName);
+            });
+
+            if (currentMode === 'browse') {
+                loadPreview(pageName);
+            } else if (currentMode === 'edit') {
+                loadEditor(pageName);
+            }
+        }
+
+        // Browse mode: load in iframe
+        function loadPreview(pageName) {
+            const frame = document.getElementById('preview-frame');
+            frame.src = `/preview/${siteName}/${pageName}.html`;
+        }
+
+        // Edit mode: load contenteditable
+        function loadEditor(pageName) {
+            fetch(`/api/content/${siteName}/${pageName}`)
+                .then(res => res.json())
+                .then(data => {
+                    const editArea = document.getElementById('edit-area');
+                    editArea.innerHTML = data.content;
+
+                    // Make content editable
+                    makeEditable(editArea);
+                })
+                .catch(err => {
+                    showToast('Error loading page: ' + err, 'error');
+                });
+        }
+
+        // Make content editable
+        function makeEditable(container) {
+            const editables = container.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, td, th');
+            editables.forEach(el => {
+                el.contentEditable = true;
+                el.addEventListener('input', () => {
+                    hasUnsavedChanges = true;
+                    document.getElementById('save-btn').disabled = false;
+                });
+            });
+        }
+
+        // Save page
+        function savePage() {
+            const editArea = document.getElementById('edit-area');
+            const content = editArea.innerHTML;
+
+            fetch(`/api/content/${siteName}/${currentPage}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({content})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('✅ Saved successfully!');
+                    hasUnsavedChanges = false;
+                    document.getElementById('save-btn').disabled = true;
+                } else {
+                    showToast('❌ Error: ' + data.error, 'error');
+                }
+            })
+            .catch(err => {
+                showToast('❌ Error saving: ' + err, 'error');
+            });
+        }
+
+        // Load overview of all pages
+        function loadOverview() {
+            const grid = document.getElementById('overview-grid');
+            grid.innerHTML = '<p>Loading...</p>';
+
+            const pages = {{ pages|tojson }};
+
+            Promise.all(pages.map(page =>
+                fetch(`/api/content/${siteName}/${page}`)
+                    .then(res => res.json())
+                    .then(data => ({page, data}))
+            ))
+            .then(results => {
+                grid.innerHTML = '';
+                results.forEach(({page, data}) => {
+                    const card = createPagePreviewCard(page, data.content);
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => {
+                grid.innerHTML = `<p>Error loading overview: ${err}</p>`;
+            });
+        }
+
+        // Create page preview card
+        function createPagePreviewCard(pageName, content) {
+            const card = document.createElement('div');
+            card.className = 'page-preview';
+
+            // Check content status
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            const textContent = tempDiv.textContent.trim();
+
+            let status = 'good';
+            let statusText = 'Ready';
+
+            if (textContent.length < 50) {
+                status = 'empty';
+                statusText = 'Empty';
+            } else if (textContent.includes('No content found')) {
+                status = 'warning';
+                statusText = 'No Content';
+            }
+
+            card.innerHTML = `
+                <div class="page-preview-header">
+                    <h4>${pageName.charAt(0).toUpperCase() + pageName.slice(1)}</h4>
+                    <span class="status-indicator status-${status}">${statusText}</span>
+                </div>
+                <div class="page-preview-content">
+                    ${content}
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                setMode('edit');
+                loadPage(pageName);
+            });
+
+            return card;
+        }
+
+        // Toast notifications
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = type === 'error' ? '#dc3545' : '#28a745';
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Warn on unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
