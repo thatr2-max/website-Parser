@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# Parser output
+downloads/
+output/
+
+# Test files
+test.html
+*.tmp
