@@ -29,6 +29,15 @@ except ImportError:
     print("Please install: pip install beautifulsoup4 html2text lxml")
     sys.exit(1)
 
+# Import layout templates
+try:
+    from templates.layouts import get_layout, DEFAULT_LAYOUT_MAP
+except ImportError:
+    # Fallback if templates not found
+    def get_layout(page_name, layout_override=None):
+        return lambda content, meta, data: content
+    DEFAULT_LAYOUT_MAP = {}
+
 
 # ============================================================================
 # PROGRESS & DISPLAY FUNCTIONS
@@ -326,6 +335,10 @@ def clean_html_content(soup: BeautifulSoup) -> BeautifulSoup:
     ]
 
     for element in soup.find_all(True):  # Find all tags
+        # Skip elements without attributes (like NavigableString, Comment, etc.)
+        if not hasattr(element, 'attrs') or element.attrs is None:
+            continue
+
         class_str = ' '.join(element.get('class', [])).lower()
         id_str = element.get('id', '').lower()
 
@@ -713,12 +726,209 @@ def map_content_to_pages(parsed_files: List[Dict]) -> Dict:
 # OUTPUT GENERATION
 # ============================================================================
 
+def markdown_to_html(markdown_text: str) -> str:
+    """
+    Converts markdown text to HTML.
+
+    Uses html2text in reverse - we'll use a simple markdown-to-HTML converter.
+    For now, we'll handle basic markdown syntax.
+
+    Args:
+        markdown_text (str): Markdown formatted text
+
+    Returns:
+        str: HTML formatted content
+    """
+    # Try to use markdown library if available, otherwise do basic conversion
+    try:
+        import markdown
+        return markdown.markdown(markdown_text, extensions=['extra', 'nl2br'])
+    except ImportError:
+        # Basic markdown conversion (fallback)
+        html = markdown_text
+
+        # Headers
+        html = re.sub(r'^# (.*?)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
+        html = re.sub(r'^## (.*?)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
+        html = re.sub(r'^### (.*?)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
+
+        # Bold and italic
+        html = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', html)
+        html = re.sub(r'\*(.*?)\*', r'<em>\1</em>', html)
+
+        # Links
+        html = re.sub(r'\[(.*?)\]\((.*?)\)', r'<a href="\2">\1</a>', html)
+
+        # Images
+        html = re.sub(r'!\[(.*?)\]\((.*?)\)', r'<img src="\2" alt="\1">', html)
+
+        # Paragraphs (double newline = new paragraph)
+        paragraphs = html.split('\n\n')
+        html = ''.join([f'<p>{p}</p>\n' if p.strip() and not p.strip().startswith('<') else p + '\n' for p in paragraphs])
+
+        # Lists (basic)
+        html = re.sub(r'^\* (.*?)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+        html = re.sub(r'(<li>.*?</li>\n)+', r'<ul>\n\g<0></ul>\n', html, flags=re.DOTALL)
+
+        return html
+
+
+def generate_html_page(page_name: str, content: str, metadata: Dict, pages: Dict) -> str:
+    """
+    Generates a complete HTML page with navigation and styling.
+
+    Args:
+        page_name (str): Name of the page (home, about, etc.)
+        content (str): Markdown content for the page
+        metadata (Dict): Site metadata
+        pages (Dict): All pages data for navigation
+
+    Returns:
+        str: Complete HTML page
+    """
+    # Convert markdown to HTML
+    html_content = markdown_to_html(content) if content else f"<p><em>No content available for this page.</em></p>"
+
+    # Apply layout template
+    page_data = pages.get(page_name, {})
+    layout_func = get_layout(page_name)
+    html_content = layout_func(html_content, metadata, page_data)
+
+    # Get current layout key for switcher
+    current_layout = DEFAULT_LAYOUT_MAP.get(page_name, 'a')
+
+    # Page display names
+    page_titles = {
+        'home': 'Home',
+        'about': 'About',
+        'government': 'Government',
+        'departments': 'Departments',
+        'services': 'Services',
+        'news': 'News',
+        'events': 'Events',
+        'contact': 'Contact',
+        'documents': 'Documents',
+        'employment': 'Employment',
+        'faqs': 'FAQs',
+        'accessibility': 'Accessibility'
+    }
+
+    page_title = page_titles.get(page_name, page_name.title())
+    site_name = metadata.get('municipality_name', 'Municipal Website')
+
+    # Build navigation menu
+    nav_items = []
+    for nav_page in page_titles.keys():
+        active_class = ' class="active"' if nav_page == page_name else ''
+        nav_items.append(f'                <li><a href="{nav_page}.html"{active_class}>{page_titles[nav_page]}</a></li>')
+
+    nav_html = '\n'.join(nav_items)
+
+    # Social media links
+    social_media = metadata.get('social_media', {})
+    social_links = []
+    if social_media.get('facebook'):
+        social_links.append(f'<a href="{social_media["facebook"]}" target="_blank">Facebook</a>')
+    if social_media.get('twitter'):
+        social_links.append(f'<a href="{social_media["twitter"]}" target="_blank">Twitter</a>')
+    if social_media.get('instagram'):
+        social_links.append(f'<a href="{social_media["instagram"]}" target="_blank">Instagram</a>')
+
+    social_html = '\n                '.join(social_links) if social_links else ''
+
+    # Contact info
+    contact = metadata.get('contact', {})
+    contact_html = f"""
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    {f'<p>{contact.get("phone", "")}</p>' if contact.get('phone') else ''}
+                    {f'<p><a href="mailto:{contact.get("email", "")}">{contact.get("email", "")}</a></p>' if contact.get('email') else ''}
+                    {f'<p>{contact.get("address", "")}</p>' if contact.get('address') else ''}
+                </div>
+    """ if contact.get('phone') or contact.get('email') or contact.get('address') else ''
+
+    hours_html = f"""
+                <div class="footer-section">
+                    <h4>Office Hours</h4>
+                    <p>{contact.get('hours', '')}</p>
+                </div>
+    """ if contact.get('hours') else ''
+
+    # Layout switcher UI
+    layout_switcher = f'''
+    <div class="layout-switcher">
+        <h4>View Layout:</h4>
+        <div class="layout-buttons">
+            <button class="layout-btn {'active' if current_layout == 'a' else ''}" data-layout="a" onclick="switchLayout('a')">A</button>
+            <button class="layout-btn {'active' if current_layout == 'b' else ''}" data-layout="b" onclick="switchLayout('b')">B</button>
+            <button class="layout-btn {'active' if current_layout == 'c' else ''}" data-layout="c" onclick="switchLayout('c')">C</button>
+            <button class="layout-btn {'active' if current_layout == 'd' else ''}" data-layout="d" onclick="switchLayout('d')">D</button>
+            <button class="layout-btn {'active' if current_layout == 'e' else ''}" data-layout="e" onclick="switchLayout('e')">E</button>
+        </div>
+    </div>'''
+
+    # Complete HTML template
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{page_title} - {site_name}</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="{page_name}" data-layout="{current_layout}">
+    <header>
+        <div class="header-content">
+            <div class="site-title">
+                {f'<img src="{metadata.get("logo_url", "")}" alt="Logo" class="logo">' if metadata.get('logo_url') else ''}
+                <h1>{site_name}</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+{nav_html}
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content">
+{html_content}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+{contact_html}
+{hours_html}
+            </div>
+
+            {f'<div class="social-media">{social_html}</div>' if social_html else ''}
+
+            <div class="copyright">
+                <p>&copy; {datetime.now().year} {site_name}. All rights reserved.</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">Generated by Municipal Website Parser • Layout: {current_layout.upper()}</p>
+            </div>
+        </div>
+    </footer>
+
+{layout_switcher}
+
+    <script src="layout_switcher.js"></script>
+</body>
+</html>"""
+
+    return html
+
+
 def generate_output_files(data: Dict, output_dir: Path) -> None:
     """
-    Generates JSON and markdown output files.
+    Generates complete HTML website with navigation and styling.
 
-    Creates the complete set of output files including a master JSON file
-    with all structured data and individual markdown files for each page.
+    Creates a browsable HTML website with all pages, navigation menu,
+    styling, and the original JSON data file.
 
     Args:
         data (Dict): Complete parsed and mapped data
@@ -726,7 +936,9 @@ def generate_output_files(data: Dict, output_dir: Path) -> None:
 
     Generates:
         - {domain}-parsed.json - Complete structured data
-        - 12 individual markdown files (home.md, about.md, etc.)
+        - 12 individual HTML files (home.html, about.html, etc.)
+        - style.css - Website styling
+        - index.html - Redirect to home.html
 
     Example:
         generate_output_files(data, Path("./output/example.gov"))
@@ -743,22 +955,62 @@ def generate_output_files(data: Dict, output_dir: Path) -> None:
         json.dump(data, f, indent=2, ensure_ascii=False)
     show_progress(f"✓ {json_file.name}", "success")
 
-    # Generate individual markdown files
+    # Copy CSS and JS files to output directory
+    script_dir = Path(__file__).parent
+    import shutil
+
+    # Copy CSS
+    css_source = script_dir / "templates" / "style.css"
+    css_dest = output_dir / "style.css"
+    if css_source.exists():
+        shutil.copy(css_source, css_dest)
+        show_progress(f"✓ style.css", "success")
+    else:
+        show_progress(f"⚠️  CSS file not found at {css_source}", "warning")
+
+    # Copy JavaScript
+    js_source = script_dir / "templates" / "layout_switcher.js"
+    js_dest = output_dir / "layout_switcher.js"
+    if js_source.exists():
+        shutil.copy(js_source, js_dest)
+        show_progress(f"✓ layout_switcher.js", "success")
+    else:
+        show_progress(f"⚠️  JS file not found at {js_source}", "warning")
+
+    # Generate individual HTML files
     page_names = ['home', 'about', 'government', 'departments', 'services',
                   'news', 'events', 'contact', 'documents', 'employment',
                   'faqs', 'accessibility']
 
     for page_name in page_names:
-        md_file = output_dir / f"{page_name}.md"
+        html_file = output_dir / f"{page_name}.html"
         page_data = data['pages'].get(page_name, {})
         content = page_data.get('content', '')
 
         if not content:
             content = f"# {page_name.title()}\n\n*No content found for this page.*"
 
-        with open(md_file, 'w', encoding='utf-8') as f:
-            f.write(content)
-        show_progress(f"✓ {md_file.name}", "success")
+        # Generate complete HTML page
+        html_content = generate_html_page(page_name, content, data['metadata'], data['pages'])
+
+        with open(html_file, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+        show_progress(f"✓ {html_file.name}", "success")
+
+    # Create index.html that redirects to home.html
+    index_html = output_dir / "index.html"
+    with open(index_html, 'w', encoding='utf-8') as f:
+        f.write("""<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=home.html">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Redirecting to <a href="home.html">home page</a>...</p>
+</body>
+</html>""")
+    show_progress(f"✓ index.html (redirect)", "success")
 
 
 # ============================================================================
