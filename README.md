@@ -1,11 +1,48 @@
-# Website Migration Tool 🚀
+# Website Migration & Conversion Tool 🚀
 
-**Fast customer website migrations in under 30 minutes using wget**
+**Two powerful tools in one: Fast website migration + Professional template conversion**
 
-A powerful, optimized website migration tool designed to rapidly clone and migrate customer websites with minimal configuration. Perfect for web hosting providers, digital agencies, and IT professionals.
+A complete website migration and conversion system that can:
+1. **Migrate**: Clone any website with wget (sub-30-minute migrations)
+2. **Convert**: Transform migrated sites into professional, standardized templates
+
+Perfect for web hosting providers, digital agencies, IT professionals, and anyone who needs to quickly migrate and standardize customer websites.
+
+---
+
+## 🎯 Two Ways to Use This Tool
+
+### Option 1: Complete Conversion (Recommended) 🎨
+**Download → Parse → Convert → Standardize**
+
+Get a clean, professional, 15-page standardized website:
+
+```bash
+./convert_website.sh https://www.example.com
+```
+
+**Output**: Modern, responsive, standardized website with 15 professionally designed pages.
+
+**See**: [CONVERSION_GUIDE.md](CONVERSION_GUIDE.md) for complete documentation.
+
+### Option 2: Migration Only 📥
+**Just download the website as-is**
+
+Get an exact copy of the website:
+
+```bash
+./migrate.sh https://www.example.com
+```
+
+**Output**: Complete copy of the original website (HTML, CSS, JS, images, etc.)
+
+**See**: Documentation below for migration-only features.
+
+---
 
 ## ✨ Features
 
+### Migration Features
 - **⚡ Ultra-Fast Migrations**: Optimized for sub-30-minute migrations
 - **🎯 Multiple Migration Modes**: Fast, Balanced, and Complete migration profiles
 - **📊 Real-Time Statistics**: Track progress and view detailed migration stats
@@ -15,24 +52,49 @@ A powerful, optimized website migration tool designed to rapidly clone and migra
 - **🔄 Batch Processing**: Migrate multiple websites at once
 - **🛡️ Error Handling**: Robust retry mechanisms and timeout handling
 
+### Conversion Features ⭐ NEW!
+- **🎨 15 Professional Templates**: Standardized page structure
+- **🤖 Intelligent Content Mapping**: AI-powered content extraction
+- **📱 Responsive Design**: Mobile-friendly, modern layouts
+- **♿ Accessible**: WCAG-compliant, semantic HTML
+- **🎯 SEO-Friendly**: Clean URLs, proper meta tags
+- **🔍 Smart Parsing**: Automatic page type detection
+- **📦 Asset Preservation**: All images and documents preserved
+- **⚙️ Customizable**: Easy to modify templates and styling
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
 
+**For Migration Only:**
 - Linux/Unix system (macOS, Ubuntu, Debian, etc.)
 - `wget` installed (usually pre-installed)
 - Bash shell
 
+**For Conversion (Migration + Templates):**
+- All of the above, plus:
+- Python 3.7+
+- pip (Python package manager)
+
 ### Basic Usage
 
+**Complete Conversion** (Download + Convert to Templates):
 ```bash
-# Clone a single website (fast mode - recommended)
+# Recommended: Get a standardized, professional website
+./convert_website.sh https://example.com
+```
+
+**Migration Only** (Download as-is):
+```bash
+# Fast mode - Surface level (5-15 min)
 ./migrate.sh https://example.com
 
-# Use balanced mode for better coverage
+# Balanced mode - Good coverage (15-25 min)
 ./migrate.sh -m balanced https://example.com
 
-# Complete site migration (all pages, all depths)
+# Complete mode - Everything (30+ min)
 ./migrate.sh -m complete https://example.com
 ```
 
@@ -43,11 +105,14 @@ A powerful, optimized website migration tool designed to rapidly clone and migra
 git clone <your-repo-url>
 cd website-Parser
 
-# Make the script executable
-chmod +x migrate.sh
+# Make scripts executable
+chmod +x migrate.sh convert_website.sh parse_and_convert.py
 
-# Run your first migration
-./migrate.sh https://example.com
+# Install Python dependencies (for conversion features)
+pip3 install -r requirements.txt
+
+# Run your first conversion!
+./convert_website.sh https://example.com
 ```
 
 ## 🎮 Usage Guide

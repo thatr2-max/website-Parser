@@ -1,0 +1,5 @@
+# Python dependencies for Website Migration & Conversion Tool
+
+beautifulsoup4>=4.9.0
+lxml>=4.6.0
+html2text>=2020.1.16

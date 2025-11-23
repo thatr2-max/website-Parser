@@ -1,0 +1,56 @@
+<!-- HOME PAGE TEMPLATE -->
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>{{HERO_TITLE}}</h1>
+        <p>{{HERO_SUBTITLE}}</p>
+        {{HERO_IMAGE}}
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <h2>Welcome to {{SITE_NAME}}</h2>
+                {{HOME_CONTENT}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News & Events Grid -->
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="text-center">Latest News & Updates</h2>
+        <div class="card-grid">
+            {{NEWS_CARDS}}
+        </div>
+        <div class="text-center mt-3">
+            <a href="news.html" class="btn">View All News</a>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Links / Services -->
+<section class="section">
+    <div class="container">
+        <h2 class="text-center">Quick Links</h2>
+        <div class="card-grid">
+            {{QUICK_LINKS_CARDS}}
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="text-center">Upcoming Events</h2>
+        {{EVENTS_LIST}}
+        <div class="text-center mt-3">
+            <a href="events.html" class="btn">View All Events</a>
+        </div>
+    </div>
+</section>

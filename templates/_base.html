@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <meta name="keywords" content="{{META_KEYWORDS}}">
+    <title>{{PAGE_TITLE}} - {{SITE_NAME}}</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="{{PAGE_TITLE}} - {{SITE_NAME}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:type" content="website">
+
+    {{EXTRA_HEAD}}
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title">
+                    <a href="index.html">{{SITE_NAME}}</a>
+                </h1>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+
+                <nav class="main-nav" role="navigation">
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="index.html" class="{{ACTIVE_HOME}}">Home</a></li>
+                        <li><a href="about.html" class="{{ACTIVE_ABOUT}}">About</a></li>
+                        <li><a href="services.html" class="{{ACTIVE_SERVICES}}">Services</a></li>
+                        <li><a href="departments.html" class="{{ACTIVE_DEPARTMENTS}}">Departments</a></li>
+                        <li><a href="news.html" class="{{ACTIVE_NEWS}}">News</a></li>
+                        <li><a href="events.html" class="{{ACTIVE_EVENTS}}">Events</a></li>
+                        <li><a href="documents.html" class="{{ACTIVE_DOCUMENTS}}">Documents</a></li>
+                        <li><a href="contact.html" class="{{ACTIVE_CONTACT}}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        {{MAIN_CONTENT}}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About {{SITE_NAME}}</h3>
+                    <p>{{SITE_DESCRIPTION}}</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none; margin-left: 0;">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>
+                        {{CONTACT_ADDRESS}}<br>
+                        Phone: {{CONTACT_PHONE}}<br>
+                        Email: <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a>
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>{{OFFICE_HOURS}}</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; {{CURRENT_YEAR}} {{SITE_NAME}}. All rights reserved. | <a href="sitemap.html">Sitemap</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    {{EXTRA_SCRIPTS}}
+</body>
+</html>
