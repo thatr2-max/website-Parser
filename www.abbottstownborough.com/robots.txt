@@ -1,2 +1,0 @@
-
-sitemap: http://www.abbottstownborough.com/sitemap.xml

@@ -1,16 +1,15 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
+# Migration Tool Output
+migrated_sites/
+migration_logs/
 
-# Parser output
-downloads/
-output/
+# Configuration (user-specific)
+config.sh
+sites.txt
 
 # Test files
 test.html
 *.tmp
+
+# System files
+.DS_Store
+Thumbs.db

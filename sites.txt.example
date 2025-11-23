@@ -1,0 +1,14 @@
+# Website Migration List
+# One URL per line
+# Lines starting with # are comments and will be ignored
+
+# Example customer websites
+https://example.com
+https://customer1.com
+https://customer2.com
+
+# You can add as many sites as needed
+# https://another-site.com
+# https://client-website.com
+
+# The batch migration tool will process these sequentially or in parallel
