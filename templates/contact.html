@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{meta_description}}">
+  <title>{{page_title}} | {{municipality_name}}</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="home.html" class="site-logo" aria-label="{{municipality_name}} Home">
+          <img src="{{logo_url}}" alt="{{municipality_name}} Logo" width="60" height="60">
+          <h1 class="site-title">{{municipality_name}}</h1>
+        </a>
+
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+            Menu
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="government.html">Government</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <h1>{{page_title}}</h1>
+
+      <div class="content-wrapper with-sidebar">
+        <section class="main-content">
+          <h2>Send Us a Message</h2>
+          <form id="contact-form" aria-labelledby="form-title">
+            <h3 id="form-title" class="visually-hidden">Contact Form</h3>
+
+            <div class="form-group">
+              <label for="name">Name <span aria-label="required">*</span></label>
+              <input type="text" id="name" name="name" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span aria-label="required">*</span></label>
+              <input type="email" id="email" name="email" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject <span aria-label="required">*</span></label>
+              <input type="text" id="subject" name="subject" required aria-required="true">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message <span aria-label="required">*</span></label>
+              <textarea id="message" name="message" required aria-required="true"></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </section>
+
+        <aside class="sidebar" role="complementary" aria-labelledby="contact-info-title">
+          <h2 id="contact-info-title">Contact Information</h2>
+
+          <div class="mb-lg">
+            <h3>Address</h3>
+            <p>{{contact_address_line1}}<br>{{contact_address_line2}}</p>
+          </div>
+
+          <div class="mb-lg">
+            <h3>Phone</h3>
+            <p><a href="tel:{{contact_phone}}">{{contact_phone_formatted}}</a></p>
+          </div>
+
+          <div class="mb-lg">
+            <h3>Email</h3>
+            <p><a href="mailto:{{contact_email}}">{{contact_email}}</a></p>
+          </div>
+
+          <div class="mb-lg">
+            <h3>Office Hours</h3>
+            <p>{{office_hours}}</p>
+          </div>
+        </aside>
+      </div>
+
+      {{#if map_embed}}
+      <section class="map-section" aria-labelledby="map-title">
+        <h2 id="map-title">Location</h2>
+        <div class="map-container">
+          {{{map_embed}}}
+        </div>
+      </section>
+      {{/if}}
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Government</h3>
+          <ul>
+            <li><a href="government.html">Mayor &amp; Council</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="meetings.html">Meetings</a></li>
+            <li><a href="documents.html">Documents</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="employment.html">Employment</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <p>{{contact_address_line1}}<br>{{contact_address_line2}}</p>
+          <p>Phone: <a href="tel:{{contact_phone}}">{{contact_phone_formatted}}</a></p>
+          <p>Email: <a href="mailto:{{contact_email}}">{{contact_email}}</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{current_year}} {{municipality_name}}. All rights reserved.</p>
+        <p><a href="sitemap.html">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../static/js/main.js"></script>
+</body>
+</html>

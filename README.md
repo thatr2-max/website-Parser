@@ -1,313 +1,226 @@
-# Website Migration Tool 🚀
+# Municipal Website Templates
 
-**Fast customer website migrations in under 30 minutes using wget**
+**Perfect, ADA-compliant page templates for small municipalities.**
 
-A powerful, optimized website migration tool designed to rapidly clone and migrate customer websites with minimal configuration. Perfect for web hosting providers, digital agencies, and IT professionals.
+This repository contains a complete set of 15 HTML page templates designed specifically for small city and town governments. The templates are WCAG 2.1 AA compliant, fully responsive, and built to serve 500+ municipalities with identical design and structure.
 
-## ✨ Features
+## Features
 
-- **⚡ Ultra-Fast Migrations**: Optimized for sub-30-minute migrations
-- **🎯 Multiple Migration Modes**: Fast, Balanced, and Complete migration profiles
-- **📊 Real-Time Statistics**: Track progress and view detailed migration stats
-- **🔧 Highly Configurable**: Extensive options for customization
-- **📝 Comprehensive Logging**: Detailed logs for every migration
-- **🎨 Beautiful CLI**: Color-coded output with progress indicators
-- **🔄 Batch Processing**: Migrate multiple websites at once
-- **🛡️ Error Handling**: Robust retry mechanisms and timeout handling
+- **15 Complete Page Templates** - Everything a municipality needs
+- **WCAG 2.1 AA Compliant** - Fully accessible to all users
+- **Responsive Design** - Works on all devices (320px to 4K)
+- **No Frameworks** - Pure HTML/CSS/JS for maximum performance
+- **Professional Design** - Trustworthy, government-appropriate styling
+- **Easy Customization** - Handlebars templates with simple data files
+- **Fast Loading** - Optimized for sub-1-second load times
 
-## 🚀 Quick Start
+## Templates Included
 
-### Prerequisites
+1. **home.html** - Homepage with hero, quick links, news, and events
+2. **about.html** - About page with sidebar for quick facts
+3. **government.html** - Mayor and City Council information
+4. **departments.html** - Department directory with contact info
+5. **services.html** - Municipal services grid
+6. **news.html** - News articles feed
+7. **events.html** - Community events calendar
+8. **contact.html** - Contact form and information
+9. **documents.html** - Document library with categories
+10. **meetings.html** - Meeting schedule and archives
+11. **employment.html** - Job listings and applications
+12. **faqs.html** - Frequently asked questions
+13. **accessibility.html** - ADA compliance statement
+14. **privacy.html** - Privacy policy
+15. **sitemap.html** - Site navigation overview
 
-- Linux/Unix system (macOS, Ubuntu, Debian, etc.)
-- `wget` installed (usually pre-installed)
-- Bash shell
+## Quick Start
 
-### Basic Usage
-
-```bash
-# Clone a single website (fast mode - recommended)
-./migrate.sh https://example.com
-
-# Use balanced mode for better coverage
-./migrate.sh -m balanced https://example.com
-
-# Complete site migration (all pages, all depths)
-./migrate.sh -m complete https://example.com
-```
-
-## 📋 Installation
+### 1. Install Dependencies
 
 ```bash
-# Clone this repository
-git clone <your-repo-url>
-cd website-Parser
-
-# Make the script executable
-chmod +x migrate.sh
-
-# Run your first migration
-./migrate.sh https://example.com
+npm install
 ```
 
-## 🎮 Usage Guide
-
-### Command Syntax
+### 2. Generate Sample Site
 
 ```bash
-./migrate.sh [OPTIONS] <URL>
+node generate.js
 ```
 
-### Options
+This creates a complete website in the `output/` directory using the example data.
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-m, --mode <mode>` | Migration mode: fast, balanced, complete | fast |
-| `-o, --output <dir>` | Output directory for migrated sites | ./migrated_sites |
-| `-l, --log <dir>` | Log directory | ./migration_logs |
-| `-r, --rate-limit <rate>` | Download rate limit (e.g., 2m, 500k) | 2m |
-| `-d, --depth <level>` | Maximum recursion depth | Mode-dependent |
-| `-e, --exclude <pattern>` | Exclude URLs matching pattern | None |
-| `--no-parent` | Don't ascend to parent directory | false |
-| `--mirror-images-only` | Only download images | false |
-| `--mirror-assets-only` | Only download assets (CSS, JS, images) | false |
-| `-h, --help` | Show help message | - |
+### 3. View the Site
 
-### Migration Modes
+Open `output/home.html` in your web browser.
 
-#### 🏃 Fast Mode (Default)
-**Target Time**: 5-15 minutes
-**Best For**: Landing pages, small business sites, quick backups
+## Usage
 
-```bash
-./migrate.sh https://example.com
+### Creating a New Municipality Site
+
+1. **Copy the example data file:**
+   ```bash
+   cp example-data.json mytown-data.json
+   ```
+
+2. **Edit the data file** with your municipality's information:
+   - Municipality name, logo, contact info
+   - Page content (text, images, links)
+   - News articles, events, council members, etc.
+
+3. **Generate the site:**
+   ```bash
+   node generate.js mytown-data.json output/mytown
+   ```
+
+4. **Deploy** the contents of `output/mytown/` to your web server.
+
+## Data File Structure
+
+The data file is a JSON file with the following structure:
+
+```json
+{
+  "municipality_name": "Your Town Name",
+  "logo_url": "path/to/logo.png",
+  "contact": {
+    "address_line1": "123 Main St",
+    "address_line2": "Town, ST 12345",
+    "phone": "+15555551234",
+    "phone_formatted": "(555) 555-1234",
+    "email": "info@yourtown.gov",
+    "office_hours": "Mon-Fri, 8AM-5PM"
+  },
+  "pages": {
+    "home": { ... },
+    "about": { ... },
+    ...
+  }
+}
 ```
 
-**Settings**:
-- Depth: 1 level
-- Retries: 2
-- Timeout: 10s
-- Rate Limit: 5MB/s
-- Excludes: Large binaries (exe, dmg, pkg, zip, tar.gz)
+See `example-data.json` for a complete reference.
 
-#### ⚖️ Balanced Mode
-**Target Time**: 15-25 minutes
-**Best For**: Medium-sized sites, corporate websites, portfolios
+## Customization
 
-```bash
-./migrate.sh -m balanced https://example.com
+### Colors
+
+Edit `static/css/main.css` and modify the CSS variables:
+
+```css
+:root {
+  --primary-blue: #0A2463;  /* Primary color */
+  --white: #FFFFFF;         /* Background */
+  /* ... other colors ... */
+}
 ```
 
-**Settings**:
-- Depth: 3 levels
-- Retries: 3
-- Timeout: 15s
-- Rate Limit: 3MB/s
-- Excludes: System binaries
+### Fonts
 
-#### 🔍 Complete Mode
-**Target Time**: 30+ minutes
-**Best For**: Large sites, full archives, complete backups
+The templates use Open Sans from Google Fonts. To change:
 
-```bash
-./migrate.sh -m complete https://example.com
-```
+1. Update the font link in each template
+2. Update the `--font-family` CSS variable
 
-**Settings**:
-- Depth: Unlimited
-- Retries: 5
-- Timeout: 30s
-- Rate Limit: 2MB/s
-- Excludes: None (downloads everything)
+### Content
 
-## 📚 Examples
+All content is controlled through the data JSON file. The templates use Handlebars syntax:
 
-### Basic Migrations
+- `{{variable}}` - Insert text
+- `{{{variable}}}` - Insert HTML
+- `{{#each array}}...{{/each}}` - Loop through arrays
+- `{{#if condition}}...{{/if}}` - Conditional rendering
 
-```bash
-# Fast migration (default)
-./migrate.sh https://example.com
+## Accessibility Features
 
-# Balanced migration with custom output directory
-./migrate.sh -m balanced -o /backup/websites https://example.com
+- ✅ Semantic HTML5 markup
+- ✅ ARIA labels and landmarks
+- ✅ Keyboard navigation support
+- ✅ Screen reader compatibility
+- ✅ Color contrast ratios (WCAG AA)
+- ✅ Responsive design (mobile-first)
+- ✅ Focus indicators
+- ✅ Skip links
+- ✅ Minimum tap target sizes (44×44px)
+- ✅ Support for reduced motion preferences
 
-# Complete migration
-./migrate.sh -m complete https://example.com
-```
+## Browser Support
 
-### Advanced Usage
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-```bash
-# Exclude specific patterns (admin pages)
-./migrate.sh -e "*/admin/*" -e "*/wp-admin/*" https://example.com
+## Performance
 
-# Custom depth and rate limit
-./migrate.sh -d 5 -r 10m https://example.com
+- No external dependencies (except Google Fonts)
+- Minimal JavaScript (mobile menu only)
+- Optimized CSS (one stylesheet)
+- Fast load times (<1s on modern connections)
+- Works offline (static HTML)
 
-# Only download images from a gallery
-./migrate.sh --mirror-images-only https://example.com/gallery
-
-# Only download website assets (CSS, JS, images, fonts)
-./migrate.sh --mirror-assets-only https://example.com
-
-# Prevent ascending to parent directories
-./migrate.sh --no-parent https://example.com/blog
-```
-
-### Batch Migrations
-
-```bash
-# Use the batch migration script
-./batch_migrate.sh sites.txt
-
-# Where sites.txt contains:
-# https://example1.com
-# https://example2.com
-# https://example3.com
-```
-
-## 📊 Output Structure
-
-After migration, your files will be organized as follows:
+## File Structure
 
 ```
-website-Parser/
-├── migrated_sites/
-│   ├── example.com/
-│   │   ├── index.html
-│   │   ├── about.html
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── images/
-│   └── another-site.com/
-│       └── ...
-└── migration_logs/
-    ├── migration_example.com_20250101_120000.log
-    └── migration_another-site.com_20250101_130000.log
+.
+├── templates/              # HTML templates (15 files)
+│   ├── home.html
+│   ├── about.html
+│   └── ...
+├── static/                 # Static assets
+│   ├── css/
+│   │   └── main.css       # Single stylesheet
+│   └── js/
+│       └── main.js        # Mobile menu script
+├── generate.js            # Template generator
+├── example-data.json      # Sample data
+├── package.json           # Dependencies
+└── README.md             # This file
 ```
 
-## 📈 Performance Tips
+## Development
 
-### For Fastest Migrations (< 10 minutes)
+### Testing Accessibility
 
-1. **Use Fast Mode**: Default settings are optimized for speed
-2. **Limit Depth**: Use `-d 1` or `-d 2` for shallow crawls
-3. **Exclude Large Files**: Use `-e` to skip unnecessary content
-4. **Increase Rate Limit**: Use `-r 10m` or higher if bandwidth allows
-5. **Skip Assets**: Use `--mirror-images-only` if you only need images
+1. Use browser DevTools Lighthouse audit
+2. Test with screen readers (NVDA, JAWS, VoiceOver)
+3. Navigate with keyboard only (Tab, Enter, Esc)
+4. Verify color contrast with browser extensions
+5. Test at different zoom levels (up to 200%)
 
-### For Complete Migrations
+### Making Changes
 
-1. **Use Complete Mode**: `-m complete` for full site coverage
-2. **Check robots.txt**: Tool bypasses robots.txt by default
-3. **Monitor Logs**: Watch log files for errors or issues
-4. **Allocate Time**: Full sites may take 30+ minutes
+1. Edit templates in `templates/`
+2. Edit styles in `static/css/main.css`
+3. Test with `node generate.js`
+4. View results in browser
 
-## 🛠️ Troubleshooting
+## Deployment
 
-### Migration Takes Too Long
+1. Generate site: `node generate.js yourdata.json output/site`
+2. Upload contents of `output/site/` to web server
+3. Ensure proper MIME types are set
+4. Configure HTTPS (required for modern browsers)
+5. Set up proper caching headers
 
-```bash
-# Use fast mode with shallow depth
-./migrate.sh -m fast -d 1 https://example.com
+## Support
 
-# Exclude large file types
-./migrate.sh -e "*.pdf" -e "*.zip" https://example.com
-```
+For questions or issues:
+- Check the example data file for reference
+- Review template HTML for variable names
+- Consult WCAG 2.1 guidelines for accessibility questions
 
-### Missing Files or Pages
+## License
 
-```bash
-# Increase depth
-./migrate.sh -d 5 https://example.com
+This template system is provided as-is for use by municipalities.
 
-# Use balanced or complete mode
-./migrate.sh -m complete https://example.com
-```
+## Credits
 
-### SSL/Certificate Errors
-
-The tool uses standard wget which respects SSL certificates. For testing environments:
-
-```bash
-# Add this to the script if needed (not recommended for production)
---no-check-certificate
-```
-
-### Rate Limiting Issues
-
-```bash
-# Reduce rate limit to be more respectful
-./migrate.sh -r 500k https://example.com
-
-# Or increase for faster downloads (if allowed)
-./migrate.sh -r 20m https://example.com
-```
-
-## 📋 Migration Statistics
-
-After each migration, you'll see detailed statistics:
-
-```
-╔═══════════════════════════════════════════════════════╗
-║              Migration Statistics                     ║
-╠═══════════════════════════════════════════════════════╣
-║ Total Duration:                     12m 34s           ║
-║ Total Files:                        342               ║
-║ Total Size:                         45.2 MB           ║
-║ HTML Pages:                         87                ║
-║ CSS Files:                          23                ║
-║ JavaScript Files:                   56                ║
-║ Images:                             156               ║
-╚═══════════════════════════════════════════════════════╝
-
-✓ Migration completed in under 30 minutes!
-```
-
-## 🔐 Security Considerations
-
-- **robots.txt**: By default, the tool bypasses robots.txt for migration purposes
-- **Authentication**: Does not handle login/authentication (add wget auth flags if needed)
-- **HTTPS**: Respects SSL certificates by default
-- **User-Agent**: Uses a standard browser user-agent to avoid blocking
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to submit issues or pull requests.
-
-## 📝 License
-
-This tool is provided as-is for website migration purposes. Ensure you have permission to migrate/clone any website you target.
-
-## 🆘 Support
-
-For issues, questions, or feature requests:
-- Check the [Troubleshooting](#-troubleshooting) section
-- Review the logs in `migration_logs/`
-- Open an issue on GitHub
-
-## 🎯 Use Cases
-
-- **Web Hosting Migration**: Move customer sites between hosting providers
-- **Website Backups**: Create local backups of websites
-- **Development**: Clone production sites for local development
-- **Archiving**: Archive websites for historical purposes
-- **Testing**: Create test environments from live sites
-- **Disaster Recovery**: Quick site recovery from live URLs
-
-## ⚡ Performance Benchmarks
-
-Based on typical usage:
-
-| Site Type | Pages | Size | Fast Mode | Balanced Mode | Complete Mode |
-|-----------|-------|------|-----------|---------------|---------------|
-| Landing Page | 1-5 | < 5MB | 1-3 min | 2-4 min | 3-5 min |
-| Small Business | 10-30 | 5-20MB | 5-10 min | 10-15 min | 15-20 min |
-| Corporate Site | 50-100 | 20-50MB | 10-15 min | 15-25 min | 25-35 min |
-| Large Portal | 200+ | 100MB+ | 15-20 min | 25-35 min | 45+ min |
-
-*Times vary based on network speed, server response time, and content type.*
+Built with:
+- Pure HTML5, CSS3, JavaScript
+- Handlebars.js for templating
+- Open Sans font family
+- WCAG 2.1 AA standards
 
 ---
 
-**Made with ❤️ for fast, reliable website migrations**
+**Built for municipalities. Designed for everyone.**

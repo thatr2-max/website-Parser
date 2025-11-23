@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{meta_description}}">
+  <title>{{page_title}} | {{municipality_name}}</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="home.html" class="site-logo" aria-label="{{municipality_name}} Home">
+          <img src="{{logo_url}}" alt="{{municipality_name}} Logo" width="60" height="60">
+          <h1 class="site-title">{{municipality_name}}</h1>
+        </a>
+
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+            Menu
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="government.html">Government</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <h1>{{page_title}}</h1>
+      {{{page_content}}}
+
+      <section class="services-list" aria-labelledby="services-title">
+        <h2 id="services-title">Available Services</h2>
+        <div class="cards-grid">
+          {{#each services}}
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">{{this.icon}}</div>
+            <h3>{{this.name}}</h3>
+            <p>{{this.description}}</p>
+            {{#if this.link}}
+            <p><a href="{{this.link}}" class="button">Learn More</a></p>
+            {{/if}}
+          </article>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Government</h3>
+          <ul>
+            <li><a href="government.html">Mayor &amp; Council</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="meetings.html">Meetings</a></li>
+            <li><a href="documents.html">Documents</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="employment.html">Employment</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <p>{{contact_address_line1}}<br>{{contact_address_line2}}</p>
+          <p>Phone: <a href="tel:{{contact_phone}}">{{contact_phone_formatted}}</a></p>
+          <p>Email: <a href="mailto:{{contact_email}}">{{contact_email}}</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{current_year}} {{municipality_name}}. All rights reserved.</p>
+        <p><a href="sitemap.html">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../static/js/main.js"></script>
+</body>
+</html>

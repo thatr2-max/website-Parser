@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{meta_description}}">
+  <title>{{page_title}} | {{municipality_name}}</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="home.html" class="site-logo" aria-label="{{municipality_name}} Home">
+          <img src="{{logo_url}}" alt="{{municipality_name}} Logo" width="60" height="60">
+          <h1 class="site-title">{{municipality_name}}</h1>
+        </a>
+
+        <nav class="main-nav" role="navigation" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+            Menu
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="government.html">Government</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <h1>{{page_title}}</h1>
+
+      <section class="accessibility-statement" aria-labelledby="statement-title">
+        <h2 id="statement-title">Accessibility Commitment</h2>
+        <p>{{municipality_name}} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+
+        <h3>Conformance Status</h3>
+        <p>This website is designed to conform to the <a href="https://www.w3.org/WAI/WCAG21/quickref/">Web Content Accessibility Guidelines (WCAG) 2.1</a> Level AA standards. These guidelines explain how to make web content more accessible for people with disabilities.</p>
+
+        <h3>Accessibility Features</h3>
+        <ul class="content-list">
+          <li>Semantic HTML5 markup for proper structure</li>
+          <li>Keyboard navigation support throughout the site</li>
+          <li>ARIA labels and landmarks for screen readers</li>
+          <li>Sufficient color contrast ratios (WCAG AA compliant)</li>
+          <li>Responsive design that works on all devices</li>
+          <li>Alternative text for all images</li>
+          <li>Clear heading hierarchy for easy navigation</li>
+          <li>Focus indicators for interactive elements</li>
+          <li>Minimum tap target sizes (44x44 pixels)</li>
+          <li>Support for reduced motion preferences</li>
+        </ul>
+
+        <h3>Assistive Technologies</h3>
+        <p>This website has been tested with the following assistive technologies:</p>
+        <ul class="content-list">
+          <li>Screen readers (JAWS, NVDA, VoiceOver)</li>
+          <li>Keyboard-only navigation</li>
+          <li>Browser zoom up to 200%</li>
+          <li>Voice control software</li>
+        </ul>
+      </section>
+
+      <section class="accessibility-feedback" aria-labelledby="feedback-title">
+        <h2 id="feedback-title">Feedback and Assistance</h2>
+        <p>We welcome your feedback on the accessibility of this website. If you encounter any accessibility barriers, please contact us:</p>
+        <ul class="content-list">
+          <li><strong>Email:</strong> <a href="mailto:{{accessibility_email}}">{{accessibility_email}}</a></li>
+          <li><strong>Phone:</strong> <a href="tel:{{contact_phone}}">{{contact_phone_formatted}}</a></li>
+          <li><strong>Mail:</strong> {{contact_address_line1}}, {{contact_address_line2}}</li>
+        </ul>
+        <p>We will respond to your inquiry within 5 business days.</p>
+      </section>
+
+      <section class="accommodations" aria-labelledby="accommodations-title">
+        <h2 id="accommodations-title">Requesting Accommodations</h2>
+        <p>If you need assistance accessing any information or services on this website, or if you require accommodations to participate in public meetings or programs, please contact us at least 48 hours in advance:</p>
+        <p><strong>ADA Coordinator:</strong> {{ada_coordinator_name}}<br>
+        <strong>Phone:</strong> <a href="tel:{{ada_coordinator_phone}}">{{ada_coordinator_phone_formatted}}</a><br>
+        <strong>Email:</strong> <a href="mailto:{{ada_coordinator_email}}">{{ada_coordinator_email}}</a></p>
+      </section>
+
+      <section class="document-accessibility" aria-labelledby="documents-title">
+        <h2 id="documents-title">Accessible Documents</h2>
+        <p>We strive to provide all documents in accessible formats. If you need a document in an alternative format (such as large print, Braille, or audio), please contact us and we will provide it within a reasonable timeframe.</p>
+      </section>
+
+      <section class="technical-specs" aria-labelledby="specs-title">
+        <h2 id="specs-title">Technical Specifications</h2>
+        <p>This website relies on the following technologies to work:</p>
+        <ul class="content-list">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript (for mobile menu only)</li>
+        </ul>
+        <p>The website is designed to be compatible with:</p>
+        <ul class="content-list">
+          <li>Modern web browsers (Chrome, Firefox, Safari, Edge)</li>
+          <li>Screen readers and assistive technologies</li>
+          <li>Mobile devices and tablets</li>
+        </ul>
+      </section>
+
+      <section class="limitations" aria-labelledby="limitations-title">
+        <h2 id="limitations-title">Known Limitations</h2>
+        <p>Despite our best efforts, some content may not yet be fully accessible. We are working to address these issues. If you encounter a problem, please contact us so we can assist you and improve the site.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Government</h3>
+          <ul>
+            <li><a href="government.html">Mayor &amp; Council</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="meetings.html">Meetings</a></li>
+            <li><a href="documents.html">Documents</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="employment.html">Employment</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <p>{{contact_address_line1}}<br>{{contact_address_line2}}</p>
+          <p>Phone: <a href="tel:{{contact_phone}}">{{contact_phone_formatted}}</a></p>
+          <p>Email: <a href="mailto:{{contact_email}}">{{contact_email}}</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{current_year}} {{municipality_name}}. All rights reserved.</p>
+        <p><a href="sitemap.html">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../static/js/main.js"></script>
+</body>
+</html>

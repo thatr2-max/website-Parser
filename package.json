@@ -1,0 +1,27 @@
+{
+  "name": "municipal-website-templates",
+  "version": "1.0.0",
+  "description": "Perfect, ADA-compliant page templates for small municipalities",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "test": "node generate.js example-data.json output"
+  },
+  "keywords": [
+    "municipal",
+    "government",
+    "templates",
+    "accessible",
+    "wcag",
+    "ada",
+    "responsive"
+  ],
+  "author": "Municipal Templates",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

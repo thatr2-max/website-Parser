@@ -1,0 +1,527 @@
+{
+  "municipality_name": "Springfield",
+  "logo_url": "https://via.placeholder.com/60x60/0A2463/FFFFFF?text=Logo",
+  "contact": {
+    "address_line1": "123 Main Street",
+    "address_line2": "Springfield, ST 12345",
+    "phone": "+15555551234",
+    "phone_formatted": "(555) 555-1234",
+    "email": "info@springfield.gov",
+    "office_hours": "Monday - Friday, 8:00 AM - 5:00 PM"
+  },
+  "pages": {
+    "home": {
+      "page_title": "Home",
+      "meta_description": "Welcome to the official website of Springfield - your source for city services, news, and information.",
+      "hero_image": "https://via.placeholder.com/1200x400/0A2463/FFFFFF?text=Springfield",
+      "hero_title": "Welcome to Springfield",
+      "hero_tagline": "A Community Built on Excellence and Service",
+      "quick_links": [
+        {
+          "icon": "💳",
+          "title": "Pay Bills",
+          "description": "Pay your utility bills and taxes online",
+          "url": "services.html"
+        },
+        {
+          "icon": "📝",
+          "title": "Report Issue",
+          "description": "Report a concern or service request",
+          "url": "contact.html"
+        },
+        {
+          "icon": "📅",
+          "title": "Meetings",
+          "description": "View upcoming council meetings",
+          "url": "meetings.html"
+        }
+      ],
+      "latest_news": [
+        {
+          "id": "news-1",
+          "title": "New Park Opens Downtown",
+          "date": "2025-01-15",
+          "formatted_date": "January 15, 2025",
+          "excerpt": "Springfield celebrates the grand opening of Riverside Park, featuring playgrounds, walking trails, and a community pavilion."
+        },
+        {
+          "id": "news-2",
+          "title": "Winter Weather Preparedness Tips",
+          "date": "2025-01-10",
+          "formatted_date": "January 10, 2025",
+          "excerpt": "Stay safe this winter with these important tips from the Springfield Emergency Management Department."
+        },
+        {
+          "id": "news-3",
+          "title": "City Budget Town Hall Scheduled",
+          "date": "2025-01-05",
+          "formatted_date": "January 5, 2025",
+          "excerpt": "Join us for a public town hall to discuss the proposed city budget for the upcoming fiscal year."
+        }
+      ],
+      "upcoming_events": [
+        {
+          "title": "City Council Meeting",
+          "date": "2025-02-01",
+          "formatted_date": "February 1, 2025",
+          "time": "7:00 PM",
+          "location": "City Hall, Council Chambers",
+          "description": "Regular monthly council meeting open to the public"
+        },
+        {
+          "title": "Community Cleanup Day",
+          "date": "2025-02-08",
+          "formatted_date": "February 8, 2025",
+          "time": "9:00 AM - 1:00 PM",
+          "location": "Memorial Park",
+          "description": "Help keep Springfield beautiful! Supplies provided."
+        },
+        {
+          "title": "Spring Festival Planning Meeting",
+          "date": "2025-02-15",
+          "formatted_date": "February 15, 2025",
+          "time": "6:00 PM",
+          "location": "Community Center",
+          "description": "Volunteer to help plan our annual Spring Festival"
+        }
+      ]
+    },
+    "about": {
+      "page_title": "About Springfield",
+      "meta_description": "Learn about the history, demographics, and community of Springfield.",
+      "page_content": "<p>Springfield is a vibrant community of approximately 25,000 residents located in the heart of the state. Founded in 1852, our city has a rich history and a bright future.</p><h3>Our Mission</h3><p>To provide exceptional public services, foster economic development, and enhance the quality of life for all Springfield residents through transparent, efficient, and responsive government.</p><h3>History</h3><p>Springfield was established in 1852 along the banks of the Spring River. The city grew rapidly during the railroad era and became a regional hub for agriculture and manufacturing. Today, Springfield maintains its small-town charm while embracing modern growth and development.</p>",
+      "quick_facts": [
+        {
+          "label": "Population",
+          "value": "25,430"
+        },
+        {
+          "label": "Founded",
+          "value": "1852"
+        },
+        {
+          "label": "Area",
+          "value": "12.5 square miles"
+        },
+        {
+          "label": "Mayor",
+          "value": "Sarah Johnson"
+        }
+      ]
+    },
+    "government": {
+      "page_title": "Government",
+      "meta_description": "Meet Springfield's Mayor and City Council members.",
+      "mayor_name": "Sarah Johnson",
+      "mayor_photo": "https://via.placeholder.com/200x200/0A2463/FFFFFF?text=Mayor",
+      "mayor_bio": "<p>Mayor Sarah Johnson has served Springfield since 2020, bringing over 15 years of public service experience to the role. She is committed to transparent government, economic development, and improving quality of life for all residents.</p><p>Before becoming Mayor, Sarah served on the City Council for 8 years and worked as a community development director.</p>",
+      "mayor_email": "mayor@springfield.gov",
+      "mayor_phone": "+15555551200",
+      "mayor_phone_formatted": "(555) 555-1200",
+      "council_members": [
+        {
+          "name": "Michael Chen",
+          "position": "Council Member, Ward 1",
+          "district": "1",
+          "photo": "https://via.placeholder.com/150x150/0A2463/FFFFFF?text=MC",
+          "email": "mchen@springfield.gov"
+        },
+        {
+          "name": "Jennifer Martinez",
+          "position": "Council Member, Ward 2",
+          "district": "2",
+          "photo": "https://via.placeholder.com/150x150/0A2463/FFFFFF?text=JM",
+          "email": "jmartinez@springfield.gov"
+        },
+        {
+          "name": "Robert Thompson",
+          "position": "Council Member, Ward 3",
+          "district": "3",
+          "photo": "https://via.placeholder.com/150x150/0A2463/FFFFFF?text=RT",
+          "email": "rthompson@springfield.gov"
+        },
+        {
+          "name": "Patricia Williams",
+          "position": "Council Member, At-Large",
+          "photo": "https://via.placeholder.com/150x150/0A2463/FFFFFF?text=PW",
+          "email": "pwilliams@springfield.gov"
+        }
+      ],
+      "page_content": "<h3>How Our Government Works</h3><p>Springfield operates under a Council-Mayor form of government. The Mayor serves as the chief executive officer, while the City Council serves as the legislative body. Council members are elected by ward, with one at-large member representing the entire city.</p>"
+    },
+    "departments": {
+      "page_title": "Departments",
+      "meta_description": "Contact information for Springfield city departments.",
+      "page_content": "<p>Springfield's dedicated city departments work together to provide essential services to our community. Contact any department directly for assistance.</p>",
+      "departments": [
+        {
+          "icon": "🏛️",
+          "name": "City Administration",
+          "description": "City management, human resources, and administrative services",
+          "phone": "+15555551234",
+          "phone_formatted": "(555) 555-1234",
+          "email": "admin@springfield.gov",
+          "hours": "Monday - Friday, 8:00 AM - 5:00 PM"
+        },
+        {
+          "icon": "🚓",
+          "name": "Police Department",
+          "description": "Law enforcement and public safety services",
+          "phone": "+15555551911",
+          "phone_formatted": "(555) 555-1911",
+          "email": "police@springfield.gov",
+          "hours": "24/7"
+        },
+        {
+          "icon": "🚒",
+          "name": "Fire Department",
+          "description": "Fire suppression, rescue, and emergency medical services",
+          "phone": "+15555551912",
+          "phone_formatted": "(555) 555-1912",
+          "email": "fire@springfield.gov",
+          "hours": "24/7"
+        },
+        {
+          "icon": "🚧",
+          "name": "Public Works",
+          "description": "Streets, water, sewer, and infrastructure maintenance",
+          "phone": "+15555551300",
+          "phone_formatted": "(555) 555-1300",
+          "email": "publicworks@springfield.gov",
+          "hours": "Monday - Friday, 7:00 AM - 4:00 PM"
+        },
+        {
+          "icon": "🏗️",
+          "name": "Planning & Development",
+          "description": "Zoning, building permits, and community development",
+          "phone": "+15555551400",
+          "phone_formatted": "(555) 555-1400",
+          "email": "planning@springfield.gov",
+          "hours": "Monday - Friday, 8:00 AM - 5:00 PM"
+        },
+        {
+          "icon": "🌳",
+          "name": "Parks & Recreation",
+          "description": "Parks, trails, recreation programs, and community events",
+          "phone": "+15555551500",
+          "phone_formatted": "(555) 555-1500",
+          "email": "parks@springfield.gov",
+          "hours": "Monday - Friday, 8:00 AM - 5:00 PM"
+        }
+      ]
+    },
+    "services": {
+      "page_title": "Services",
+      "meta_description": "Municipal services available to Springfield residents.",
+      "page_content": "<p>Springfield provides a wide range of services to residents and businesses. Explore our services below or contact us for assistance.</p>",
+      "services": [
+        {
+          "icon": "💧",
+          "name": "Water & Sewer",
+          "description": "Water and wastewater services, billing, and customer service",
+          "link": "contact.html"
+        },
+        {
+          "icon": "🗑️",
+          "name": "Trash & Recycling",
+          "description": "Curbside trash collection and recycling programs",
+          "link": "contact.html"
+        },
+        {
+          "icon": "🏗️",
+          "name": "Building Permits",
+          "description": "Apply for building, electrical, and plumbing permits",
+          "link": "contact.html"
+        },
+        {
+          "icon": "🚗",
+          "name": "Street Maintenance",
+          "description": "Report potholes and street maintenance issues",
+          "link": "contact.html"
+        },
+        {
+          "icon": "📚",
+          "name": "Library Services",
+          "description": "Public library programs and resources",
+          "link": "contact.html"
+        },
+        {
+          "icon": "⚖️",
+          "name": "Municipal Court",
+          "description": "Traffic citations and municipal court information",
+          "link": "contact.html"
+        }
+      ]
+    },
+    "news": {
+      "page_title": "News",
+      "meta_description": "Latest news and announcements from Springfield.",
+      "news_articles": [
+        {
+          "id": "news-1",
+          "title": "New Park Opens Downtown",
+          "date": "2025-01-15",
+          "formatted_date": "January 15, 2025",
+          "content": "<p>Springfield celebrated the grand opening of Riverside Park today, a 15-acre greenspace featuring modern playgrounds, walking trails, and a community pavilion.</p><p>The park, which cost $2.5 million to develop, was funded through a combination of state grants and local bonds. Mayor Sarah Johnson cut the ribbon at the opening ceremony, attended by over 200 residents.</p><p>\"This park represents our commitment to creating spaces where families can gather and children can play,\" said Mayor Johnson. \"We're proud to offer this amenity to our community.\"</p>",
+          "author": "City Communications"
+        },
+        {
+          "id": "news-2",
+          "title": "Winter Weather Preparedness Tips",
+          "date": "2025-01-10",
+          "formatted_date": "January 10, 2025",
+          "content": "<p>With winter weather approaching, the Springfield Emergency Management Department offers these important safety tips:</p><ul><li>Keep emergency supplies in your vehicle</li><li>Avoid unnecessary travel during storms</li><li>Check on elderly neighbors</li><li>Keep sidewalks clear of ice and snow</li><li>Know the signs of hypothermia and frostbite</li></ul><p>For emergency assistance, call 911. For non-emergency information, call (555) 555-1234.</p>",
+          "author": "Emergency Management"
+        },
+        {
+          "id": "news-3",
+          "title": "City Budget Town Hall Scheduled",
+          "date": "2025-01-05",
+          "formatted_date": "January 5, 2025",
+          "content": "<p>The City of Springfield will host a public town hall meeting on January 25th at 6:00 PM to discuss the proposed budget for Fiscal Year 2026.</p><p>The meeting will be held at City Hall and will also be livestreamed on the city's website. Residents are encouraged to attend and provide feedback on budget priorities.</p><p>Proposed budget documents are available on the city website.</p>",
+          "author": "City Administration"
+        }
+      ]
+    },
+    "events": {
+      "page_title": "Events",
+      "meta_description": "Community events and activities in Springfield.",
+      "events": [
+        {
+          "title": "City Council Meeting",
+          "date": "2025-02-01",
+          "formatted_date": "February 1, 2025",
+          "time": "7:00 PM",
+          "location": "City Hall, Council Chambers",
+          "description": "<p>Regular monthly council meeting. Agenda includes budget discussion, zoning requests, and public comments.</p>"
+        },
+        {
+          "title": "Community Cleanup Day",
+          "date": "2025-02-08",
+          "formatted_date": "February 8, 2025",
+          "time": "9:00 AM - 1:00 PM",
+          "location": "Memorial Park",
+          "description": "<p>Join your neighbors in keeping Springfield beautiful! We'll provide gloves, bags, and refreshments. All ages welcome.</p>",
+          "registration_link": "contact.html"
+        },
+        {
+          "title": "Spring Festival Planning Meeting",
+          "date": "2025-02-15",
+          "formatted_date": "February 15, 2025",
+          "time": "6:00 PM",
+          "location": "Community Center",
+          "description": "<p>Volunteers needed to help plan our annual Spring Festival. Share your ideas and get involved!</p>"
+        }
+      ]
+    },
+    "contact": {
+      "page_title": "Contact Us",
+      "meta_description": "Get in touch with the City of Springfield.",
+      "map_embed": "<iframe src=\"https://www.openstreetmap.org/export/embed.html?bbox=-95.7%2C37.2%2C-95.6%2C37.3&amp;layer=mapnik\" style=\"border: 1px solid #ccc; width: 100%; height: 400px;\" title=\"Springfield Location Map\"></iframe>"
+    },
+    "documents": {
+      "page_title": "Documents",
+      "meta_description": "Official documents, forms, and public records.",
+      "page_content": "<p>Access city documents, forms, and public records. Documents are available for download in PDF format.</p>",
+      "document_categories": [
+        {
+          "category_name": "Budget & Financial Reports",
+          "documents": [
+            {
+              "title": "FY 2025 Annual Budget",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "2.5 MB",
+              "description": "Complete annual budget for fiscal year 2025"
+            },
+            {
+              "title": "Quarterly Financial Report - Q4 2024",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "850 KB"
+            }
+          ]
+        },
+        {
+          "category_name": "Forms & Applications",
+          "documents": [
+            {
+              "title": "Building Permit Application",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "125 KB"
+            },
+            {
+              "title": "Business License Application",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "180 KB"
+            },
+            {
+              "title": "Parks Facility Rental Form",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "95 KB"
+            }
+          ]
+        },
+        {
+          "category_name": "Ordinances & Resolutions",
+          "documents": [
+            {
+              "title": "Zoning Ordinance",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "1.8 MB"
+            },
+            {
+              "title": "Code of Ordinances",
+              "url": "#",
+              "file_type": "PDF",
+              "file_size": "5.2 MB"
+            }
+          ]
+        }
+      ]
+    },
+    "meetings": {
+      "page_title": "Meeting Schedule",
+      "meta_description": "City Council meetings, agendas, and minutes.",
+      "page_content": "<p>All City Council meetings are open to the public. Meetings are held at City Hall and livestreamed on our website.</p>",
+      "upcoming_meetings": [
+        {
+          "title": "City Council Regular Meeting",
+          "date": "2025-02-01",
+          "formatted_date": "February 1, 2025",
+          "time": "7:00 PM",
+          "location": "City Hall, Council Chambers",
+          "agenda_link": "#",
+          "description": "Regular monthly meeting"
+        },
+        {
+          "title": "Planning Commission Meeting",
+          "date": "2025-02-10",
+          "formatted_date": "February 10, 2025",
+          "time": "6:30 PM",
+          "location": "City Hall, Conference Room A",
+          "agenda_link": "#"
+        }
+      ],
+      "meeting_schedule": [
+        {
+          "type": "City Council",
+          "frequency": "First Saturday of each month",
+          "time": "7:00 PM",
+          "location": "City Hall, Council Chambers"
+        },
+        {
+          "type": "Planning Commission",
+          "frequency": "Second Monday of each month",
+          "time": "6:30 PM",
+          "location": "City Hall, Conference Room A"
+        }
+      ],
+      "past_meetings": [
+        {
+          "title": "City Council Regular Meeting",
+          "formatted_date": "January 4, 2025",
+          "agenda_link": "#",
+          "minutes_link": "#"
+        },
+        {
+          "title": "City Council Regular Meeting",
+          "formatted_date": "December 7, 2024",
+          "agenda_link": "#",
+          "minutes_link": "#",
+          "video_link": "#"
+        }
+      ]
+    },
+    "employment": {
+      "page_title": "Employment Opportunities",
+      "meta_description": "Career opportunities with the City of Springfield.",
+      "page_content": "<p>Join our team and make a difference in the Springfield community! We offer competitive salaries, excellent benefits, and meaningful work.</p>",
+      "job_listings": [
+        {
+          "title": "Public Works Technician",
+          "department": "Public Works",
+          "type": "Full-time",
+          "posted_date": "January 15, 2025",
+          "description": "<p>The Public Works Department seeks a skilled technician to assist with street maintenance, water system operations, and general infrastructure repairs.</p><p><strong>Qualifications:</strong> High school diploma or equivalent, valid driver's license, 2+ years experience in public works or related field.</p>",
+          "salary_range": "$45,000 - $55,000 annually",
+          "closing_date": "February 15, 2025",
+          "application_link": "contact.html"
+        },
+        {
+          "title": "Recreation Program Coordinator",
+          "department": "Parks & Recreation",
+          "type": "Part-time",
+          "posted_date": "January 10, 2025",
+          "description": "<p>Coordinate youth and adult recreation programs, including sports leagues, summer camps, and special events.</p><p><strong>Qualifications:</strong> Bachelor's degree in recreation, education, or related field preferred. Experience working with youth and adults in recreational settings.</p>",
+          "salary_range": "$18 - $22 per hour",
+          "closing_date": "February 1, 2025",
+          "application_link": "contact.html"
+        }
+      ],
+      "how_to_apply": "<p>To apply for a position with the City of Springfield:</p><ol><li>Review the job description and qualifications</li><li>Submit a completed application, resume, and cover letter</li><li>Applications can be submitted online, by email, or in person at City Hall</li><li>Applications must be received by the closing date</li></ol><p>For questions, contact Human Resources at (555) 555-1234 or hr@springfield.gov</p>",
+      "benefits": [
+        "Health, dental, and vision insurance",
+        "Retirement plan with employer match",
+        "Paid vacation and sick leave",
+        "11 paid holidays per year",
+        "Professional development opportunities",
+        "Life insurance",
+        "Employee assistance program"
+      ]
+    },
+    "faqs": {
+      "page_title": "Frequently Asked Questions",
+      "meta_description": "Common questions about Springfield city services.",
+      "page_content": "<p>Find answers to commonly asked questions about city services. Can't find what you're looking for? Contact us!</p>",
+      "faqs": [
+        {
+          "question": "How do I pay my water bill?",
+          "answer": "<p>Water bills can be paid online through our payment portal, by mail, by phone at (555) 555-1234, or in person at City Hall during business hours. We accept checks, cash, and credit/debit cards.</p>"
+        },
+        {
+          "question": "When is trash pickup in my area?",
+          "answer": "<p>Trash is collected weekly on Mondays for the north side of town and Thursdays for the south side. Recycling is collected every other week. For your specific pickup schedule, call Public Works at (555) 555-1300.</p>"
+        },
+        {
+          "question": "How do I report a pothole or street problem?",
+          "answer": "<p>Report street issues by calling Public Works at (555) 555-1300, submitting a request through our online form, or visiting City Hall. Please provide the specific location and a description of the problem.</p>"
+        },
+        {
+          "question": "Do I need a permit to build a fence?",
+          "answer": "<p>Yes, a building permit is required for most fences. Contact the Planning & Development Department at (555) 555-1400 for specific requirements and to apply for a permit.</p>"
+        },
+        {
+          "question": "How do I reserve a park pavilion?",
+          "answer": "<p>Park pavilion reservations can be made through the Parks & Recreation Department. Call (555) 555-1500 or visit City Hall to complete a reservation form. A rental fee applies.</p>"
+        },
+        {
+          "question": "When are City Council meetings held?",
+          "answer": "<p>City Council meetings are held on the first Saturday of each month at 7:00 PM in the City Hall Council Chambers. All meetings are open to the public. View the full schedule on our Meetings page.</p>"
+        }
+      ]
+    },
+    "accessibility": {
+      "page_title": "Accessibility Statement",
+      "meta_description": "Springfield's commitment to digital accessibility and ADA compliance.",
+      "accessibility_email": "accessibility@springfield.gov",
+      "ada_coordinator_name": "James Wilson",
+      "ada_coordinator_phone": "+15555551250",
+      "ada_coordinator_phone_formatted": "(555) 555-1250",
+      "ada_coordinator_email": "adacoordinator@springfield.gov"
+    },
+    "privacy": {
+      "page_title": "Privacy Policy",
+      "meta_description": "How Springfield protects your privacy and handles personal information.",
+      "privacy_last_updated": "January 1, 2025"
+    },
+    "sitemap": {
+      "page_title": "Sitemap",
+      "meta_description": "Complete navigation of the Springfield website."
+    }
+  }
+}
